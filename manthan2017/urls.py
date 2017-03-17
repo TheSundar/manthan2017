@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls.static import static
+import os
+from settings import BASE_DIR
+
 import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
-]
+]+static('/build/', document_root=os.path.join(BASE_DIR,'static/www/build/')) \
+              + static('/assets/', document_root=os.path.join(BASE_DIR,'static/www/assets/'))
