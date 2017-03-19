@@ -24522,6 +24522,10 @@ ion-navbar.toolbar {
   font-weight: lighter;
 }
 
+.tutorial-page .active {
+  background-color: #000;
+}
+
 .tutorial-page .presenters {
   font-size: 1rem;
   font-weight: 500;
@@ -24530,7 +24534,7 @@ ion-navbar.toolbar {
 .tutorial-page .slide-image {
   max-height: 100%;
   max-width: 100%;
-  display: left;
+  float: left !important;
   left: 0;
   /* margin-top: 30px; */
 }
