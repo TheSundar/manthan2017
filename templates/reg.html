@@ -1,0 +1,116 @@
+<div id="container" style="width:100%; height:400px;"></div>
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script>
+    var fb = new Firebase("https://manthan2017-74a33.firebaseio.com/registration");
+    fb.on("value", function(data) {
+        var model = data.val();
+        var count = 0
+        var registration = [0,0,0,0,0,0,0,0]
+        var ratings = [0,0,0,0,0,0,0,0]
+        var rate_count = [0,0,0,0,0,0,0,0]
+      for(key in model){
+       for(j in model[key]){
+        for(k in model[key]['registration']){
+        if(model[key]['registration'][k] ==true){
+
+            registration[k]++
+
+        }
+
+
+        }
+           for(k in model[key]['ratings']){
+        if(model[key]['ratings'][k]){
+
+            ratings[k]+= model[key]['ratings'][k]
+            rate_count[k]++
+
+
+        }
+
+
+        }
+
+       }
+      }
+      for(var i =0;i<ratings.length;i++){
+      ratings[i] =  Math.round(ratings[i]/rate_count[i] * 100)/100
+
+
+      }
+
+      console.log(ratings,rate_count)
+
+        var chart = Highcharts.chart('container1', {
+
+            title: {
+                text: 'Ratings for each Event'
+            },
+
+            subtitle: {
+                text: 'Plain'
+            },
+             plotOptions: {
+        column: {
+            dataLabels: {
+                enabled: true
+            }
+        }},
+
+
+            xAxis: {
+                categories: ['ALL', 'Inauguration & Lighting Lamp', 'Keynote', 'Neural Network', 'Team Manas', 'Poster Presentation', 'Panel Discussion', 'Closing Remarks',]
+            },
+
+            series: [{
+                type: 'column',
+                colorByPoint: true,
+                data: ratings,
+                showInLegend: true,
+
+            }
+
+            ]
+
+        });
+        var chart = Highcharts.chart('container', {
+
+            title: {
+                text: 'Registration for each Event'
+            },
+
+            subtitle: {
+                text: 'Plain'
+            },
+             plotOptions: {
+        column: {
+            dataLabels: {
+                enabled: true
+            }
+        }},
+
+
+            xAxis: {
+                categories: ['ALL', 'Inauguration & Lighting Lamp', 'Keynote', 'Neural Network', 'Team Manas', 'Poster Presentation', 'Panel Discussion', 'Closing Remarks',]
+            },
+
+            series: [{
+                type: 'column',
+                colorByPoint: true,
+                data: registration,
+                showInLegend: true,
+
+            }
+
+            ]
+
+        });
+
+    });
+</script>
+<div id="container"></div>
+<div id="container1"></div>

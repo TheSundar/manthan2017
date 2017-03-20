@@ -24,5 +24,9 @@ import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
+    url(r'^reg/', views.reg, name='index'),
+    url(r'^rate/', views.rate, name='index'),
+    url(r'^all/', views.all, name='index'),
+    
 ]+static('/build/', document_root=os.path.join(BASE_DIR,'static/www/build/')) \
               + static('/assets/', document_root=os.path.join(BASE_DIR,'static/www/assets/'))
