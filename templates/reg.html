@@ -4,6 +4,8 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="/static/theme.js"></script>
+
 <script>
     var fb = new Firebase("https://manthan2017-74a33.firebaseio.com/registration");
     fb.on("value", function(data) {
@@ -45,46 +47,15 @@
 
       console.log(ratings,rate_count)
 
-        var chart = Highcharts.chart('container1', {
 
-            title: {
-                text: 'Ratings for each Event'
-            },
-
-            subtitle: {
-                text: 'Plain'
-            },
-             plotOptions: {
-        column: {
-            dataLabels: {
-                enabled: true
-            }
-        }},
-
-
-            xAxis: {
-                categories: ['ALL', 'Inauguration & Lighting Lamp', 'Keynote', 'Neural Network', 'Team Manas', 'Poster Presentation', 'Panel Discussion', 'Closing Remarks',]
-            },
-
-            series: [{
-                type: 'column',
-                colorByPoint: true,
-                data: ratings,
-                showInLegend: true,
-
-            }
-
-            ]
-
-        });
         var chart = Highcharts.chart('container', {
 
             title: {
-                text: 'Registration for each Event'
+                text: 'Registration for Each Event'
             },
 
             subtitle: {
-                text: 'Plain'
+                text: ''
             },
              plotOptions: {
         column: {
@@ -113,4 +84,3 @@
     });
 </script>
 <div id="container"></div>
-<div id="container1"></div>
